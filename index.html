@@ -1,7 +1,42 @@
 <!DOCTYPE html>
 <html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+<body style='color: skyblue; background-color: black'>
+
+<h1>fahrenheit, celsius conversion</h1>
+
+<form>
+fahrenheit:<input type="text" id="fField" value="70"><br>
+<p id="celsius">celsius:</p>
+<br>
+celsius:<input type="text" id="cField" value="25"><br>
+<p id="fahrenheit">fahrenheit:</p>
+
+<button type="button" onclick="calculate()">Calculate it</button>
+</form> 
+
+<script>
+function calculate()
+{
+    var fValue = document.getElementById("fField").value;
+    document.getElementById("celsius").innerHTML = 
+        "celsius: " + toCelsius(fValue);
+
+    var cValue = document.getElementById("cField").value;
+    document.getElementById("fahrenheit").innerHTML = 
+        "fahrenheit: " + toFahrenheit(cValue);
+}
+
+function toCelsius(fahrenheit) 
+{
+    return (5/9) * (fahrenheit-32);
+}
+
+function toFahrenheit(celsius) 
+{
+    return (9/5) * celsius + 32;
+}
+
+</script>
+
 </body>
 </html>
