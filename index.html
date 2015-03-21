@@ -1,20 +1,44 @@
 <!DOCTYPE html>
 <html>
-<body style='color: skyblue; background-color: black'>
+<style>
+body {
+    background-color: black;
+    color: skyblue;
+    font-size: 30px;
+}
+#calculateButton {
+    width: 150px;  height: 40px; font-size: 30px
+}
+</style>
+
+<body id="mybody">
 
 <h1>fahrenheit, celsius conversion</h1>
 
 <form>
-fahrenheit:<input type="text" id="fField" value="70"><br>
+fahrenheit:<input type="text" id="fField" onkeydown="calculate()" value="70"><br>
 <p id="celsius">celsius:</p>
 <br>
-celsius:<input type="text" id="cField" value="25"><br>
+celsius:<input type="text" id="cField" onkeydown="calculate()" value="25"><br>
 <p id="fahrenheit">fahrenheit:</p>
-
-<button type="button" onclick="calculate()">Calculate it</button>
+<br>
+<button type="button" id="calculateButton" onclick="calculate()">Calculate it</button>
 </form> 
 
 <script>
+setInterval(changeColor,500);
+var r = 0;
+var g = 0;
+var b = 0;
+function changeColor()
+{
+    document.getElementById("mybody").style.backgroundColor = 
+        "rgb(" + r%256 + "," + g%256 + "," + b%256 + ")";
+    r += 10;
+    g += 5;
+    b += 30;
+}
+
 function calculate()
 {
     var output;
