@@ -19,7 +19,7 @@ function calculate()
 {
     var output;
     var fValue = document.getElementById("fField").value;
-    if( !isNaN(fValue) )
+    if( isNumber(fValue) )
     {
         output = "celsius: " + toCelsius(fValue);
     }
@@ -30,7 +30,7 @@ function calculate()
     document.getElementById("celsius").innerHTML = output;
             
     var cValue = document.getElementById("cField").value;
-    if( !isNaN(cValue) )
+    if( isNumber(cValue) )
     {
         output = "fahrenheit: " + toFahrenheit(cValue);
     }
@@ -39,6 +39,11 @@ function calculate()
         output = "Error. Please enter a number.";
     }
     document.getElementById("fahrenheit").innerHTML = output;
+}
+
+function isNumber(n) 
+{
+  return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
 function toCelsius(fahrenheit) 
