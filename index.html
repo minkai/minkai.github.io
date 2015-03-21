@@ -13,13 +13,10 @@ body {
 
 <h1>fahrenheit, celsius conversion</h1>
 
-<form>
 fahrenheit:<input type="text" id="fField" onkeyup="calculateCelsius()" value="70"><br>
 <p id="celsius">celsius:</p><br>
 celsius:<input type="text" id="cField" onkeyup="calculateFahrenheit()" value="25"><br>
 <p id="fahrenheit">fahrenheit:</p><br>
-
-</form> 
 
 <script>
 setInterval(changeColor,500);
@@ -48,8 +45,6 @@ function calculateCelsius()
         output = "Error. Please enter a number.";
     }
     document.getElementById("celsius").innerHTML = output;
-            
-    
 }
 
 function calculateFahrenheit()
