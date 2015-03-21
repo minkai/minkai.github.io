@@ -11,7 +11,7 @@ body {
 
 <body id="mybody">
 
-<h1>fahrenheit, celsius conversion</h1>
+<h1 id="myheader">fahrenheit, celsius conversion</h1>
 
 fahrenheit:<input type="text" id="fField" onkeyup="calculateCelsius()" value="70"><br>
 <div id="celsius">celsius:</div><br>
@@ -25,11 +25,11 @@ var g = 0;
 var b = 0;
 function changeColor()
 {
-    document.getElementById("mybody").style.backgroundColor = 
+    document.getElementById("myheader").style.backgroundColor = 
         "rgb(" + r%256 + "," + g%256 + "," + b%256 + ")";
-    r += 10;
-    g += 5;
-    b += 30;
+    r += 2;
+    g += 1;
+    b += 6;
 }
 
 function calculateCelsius()
