@@ -4,11 +4,9 @@
 body {
     background-color: black;
     color: skyblue;
-    font-size: 30px;
+    font-size: 24px;
 }
-#calculateButton {
-    width: 150px;  height: 40px; font-size: 30px
-}
+
 </style>
 
 <body id="mybody">
@@ -16,13 +14,11 @@ body {
 <h1>fahrenheit, celsius conversion</h1>
 
 <form>
-fahrenheit:<input type="text" id="fField" onkeydown="calculate()" value="70"><br>
-<p id="celsius">celsius:</p>
-<br>
-celsius:<input type="text" id="cField" onkeydown="calculate()" value="25"><br>
-<p id="fahrenheit">fahrenheit:</p>
-<br>
-<button type="button" id="calculateButton" onclick="calculate()">Calculate it</button>
+fahrenheit:<input type="text" id="fField" onkeyup="calculateCelsius()" value="70"><br>
+<p id="celsius">celsius:</p><br>
+celsius:<input type="text" id="cField" onkeyup="calculateFahrenheit()" value="25"><br>
+<p id="fahrenheit">fahrenheit:</p><br>
+
 </form> 
 
 <script>
@@ -39,7 +35,7 @@ function changeColor()
     b += 30;
 }
 
-function calculate()
+function calculateCelsius()
 {
     var output;
     var fValue = document.getElementById("fField").value;
@@ -53,6 +49,12 @@ function calculate()
     }
     document.getElementById("celsius").innerHTML = output;
             
+    
+}
+
+function calculateFahrenheit()
+{
+    var output;
     var cValue = document.getElementById("cField").value;
     if( isNumber(cValue) )
     {
