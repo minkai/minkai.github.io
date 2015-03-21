@@ -17,13 +17,28 @@ celsius:<input type="text" id="cField" value="25"><br>
 <script>
 function calculate()
 {
+    var output;
     var fValue = document.getElementById("fField").value;
-    document.getElementById("celsius").innerHTML = 
-        "celsius: " + toCelsius(fValue);
-
+    if( !isNaN(fValue) )
+    {
+        output = "celsius: " + toCelsius(fValue);
+    }
+    else
+    {
+        output = "Error. Please enter a number.";
+    }
+    document.getElementById("celsius").innerHTML = output;
+            
     var cValue = document.getElementById("cField").value;
-    document.getElementById("fahrenheit").innerHTML = 
-        "fahrenheit: " + toFahrenheit(cValue);
+    if( !isNaN(cValue) )
+    {
+        output = "fahrenheit: " + toFahrenheit(cValue);
+    }
+    else
+    {
+        output = "Error. Please enter a number.";
+    }
+    document.getElementById("fahrenheit").innerHTML = output;
 }
 
 function toCelsius(fahrenheit) 
