@@ -22,16 +22,38 @@ celsius:<input type="text" id="cField" onkeyup="calculateFahrenheit()" value="25
 setInterval(changeColor,500);
 calculateCelsius();
 calculateFahrenheit();
-var r = 0;
-var g = 0;
-var b = 0;
+var mycolor = [0, 0, 0];
+var inc = [1, 1, 1];
 function changeColor()
 {
     document.getElementById("myheader").style.backgroundColor = 
-        "rgb(" + r%256 + "," + g%256 + "," + b%256 + ")";
-    r += 2;
-    g += 1;
-    b += 3;
+        "rgb(" + mycolor[0]%256 + "," + mycolor[1]%256 + "," + mycolor[2]%256 + ")";
+    for(var i = 0; i < mycolor.length; i++)
+    {
+        if(i == 0)
+        {
+            mycolor[i] += inc[i] * 2;
+        }
+        else if(i == 1)
+        {
+            mycolor[i] += inc[i] * 1;
+        }
+        else
+        {
+            mycolor[i] += inc[i] * 3;
+        }
+        
+        if(256 <= mycolor[i])
+        {
+            mycolor[i] = 2*255 - mycolor[i];
+            inc[i] = -inc[i];
+        }
+        else if(mycolor[i] < 0)
+        {
+            mycolor[i] = -mycolor[i];
+            inc[i] = -inc[i];
+        }
+    }
 }
 
 function calculateCelsius()
