@@ -10,8 +10,34 @@ $(document).ready(function(){
     $("input").blur(function(){
         $(this).css("background-color", "rgb(255,255,255)");
     });
+    $("#myImg").mousedown(startDrag);
+    $("#myImg").mouseup(stopDrag);
 });
+var x, y, imgX, imgY;
+function startDrag(e) {
+    x = e.pageX;
+    y = e.pageY;
+    var l = $("#myImg").css("left");
+    var t = $("#myImg").css("top");
+    imgX = Number(l.substring(0, l.length - 2));
+    imgY = Number(t.substring(0, t.length - 2));
+
+    $(document).mousemove(dragImg);
+}
+
+function dragImg(e)
+{
+    var newX = imgX + e.pageX - x;
+    var newY = imgY + e.pageY - y;
+    $("#crop").css("left", newX);
+    $("#crop").css("top", newY);
+}
+
+function stopDrag(e) {
+    $(document).off();
+}
 </script>
+
 <style>
 body {
     background-color: black;
@@ -19,6 +45,15 @@ body {
     font-size: 24px;
 }
 
+#myImg {
+    position: absolute;
+    left: 200px;
+    top: 500px;
+    width: 50px;
+    height: 60px;
+    overflow: hidden;
+    cursor: grab;
+}
 </style>
 
 <body id="mybody">
@@ -31,7 +66,10 @@ celsius:<input type="text" id="cField" onkeyup="calculateFahrenheit()" value="25
 <div id="fahrenheit">fahrenheit:</div><br>
 <br>
 <br>
-<img src="testImg.bmp" width="50" height="50">
+
+<div id="myImg">
+<img src="testImg.bmp">
+</div>
 
 <script>
 setInterval(changeColor,500);
@@ -115,7 +153,6 @@ function toFahrenheit(celsius)
 {
     return (9/5) * celsius + 32;
 }
-
 </script>
 
 </body>
