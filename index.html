@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 
-<script src="jquery-2.1.3.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.3.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 <script>
 $(document).ready(function(){
     $("input").focus(function(){
@@ -10,32 +12,32 @@ $(document).ready(function(){
     $("input").blur(function(){
         $(this).css("background-color", "rgb(255,255,255)");
     });
-    $("#myImg").mousedown(startDrag);
-    $("#myImg").mouseup(stopDrag);
+
+    $("#myCanvas").attr("width", "300");
+    $("#myCanvas").attr("height", "100");
+    
+    setInterval(setImg,100);
+    
 });
-var x, y, imgX, imgY;
-function startDrag(e) {
-    x = e.pageX;
-    y = e.pageY;
-    var l = $("#myImg").css("left");
-    var t = $("#myImg").css("top");
-    imgX = Number(l.substring(0, l.length - 2));
-    imgY = Number(t.substring(0, t.length - 2));
+var myImg = new Image();
+myImg.src = "testImg.bmp";
 
-    $(document).mousemove(dragImg);
-}
-
-function dragImg(e)
+var imgX = 0;
+var imgXDirection = 1;
+function setImg()
 {
-    var newX = imgX + e.pageX - x;
-    var newY = imgY + e.pageY - y;
-    $("#myImg").css("left", newX);
-    $("#myImg").css("top", newY);
+    var ctx = $("#myCanvas")[0].getContext("2d");
+    ctx.drawImage(myImg, -imgX, 0);
+    imgX += imgXDirection;
+   
+    if( (myImg.width - $("#myCanvas").attr("width") < imgX) || (imgX < 0) )
+    {
+        console.log("changing direction");
+        imgXDirection = -imgXDirection;
+        imgX += 2 * imgXDirection;
+    }
 }
 
-function stopDrag(e) {
-    $(document).off();
-}
 </script>
 
 <style>
@@ -43,16 +45,6 @@ body {
     background-color: black;
     color: skyblue;
     font-size: 24px;
-}
-
-#myImg {
-    position: absolute;
-    left: 200px;
-    top: 500px;
-    width: 50px;
-    height: 60px;
-    overflow: hidden;
-    cursor: grab;
 }
 </style>
 
@@ -66,10 +58,7 @@ celsius:<input type="text" id="cField" onkeyup="calculateFahrenheit()" value="25
 <div id="fahrenheit">fahrenheit:</div><br>
 <br>
 <br>
-
-<div id="myImg">
-<img src="testImg.bmp">
-</div>
+<canvas id="myCanvas"></canvas>
 
 <script>
 setInterval(changeColor,500);
